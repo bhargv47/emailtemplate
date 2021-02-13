@@ -1,0 +1,168 @@
+<style>
+.elementor-field-group-urgent_request label {
+    display: none;
+}
+input#form-field-name, input#form-field-StudentName {
+    text-transform: capitalize;
+}</style>
+<script>
+//timezone add
+var newtimezon = new Date().toString().match(/([A-Z]+[\+-][0-9]+.*)/)[1]
+ 		var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+ 		jQuery('input#form-field-timezone_step_2').val(timezone +" "+ newtimezon);     
+
+// Name and email cookie
+
+
+jQuery("div#step_2_form .elementor-field-type-submit").hover(function(){
+	var aff_name = jQuery('div#step_2_form input#form-field-name').val();	
+	var aff_email = jQuery('div#step_2_form input#form-field-email').val();	
+	  
+	jQuery.cookie('aff_name',aff_name);	
+	jQuery.cookie('aff_email',aff_email);
+	
+	 var referid = jQuery.cookie("referid");
+  if (referid) {
+    jQuery.cookie('client_entry','true');
+  }
+  	var cntry = jQuery("select#form-field-popup_country").val();
+	var ibpro = jQuery('input[name="form_fields[ibprogramme]"]:checked').val();
+	if (cntry == 'Canada') {
+		switch (ibpro) {
+			case ('Diploma Programme'): 	
+			
+			jQuery('input#form-field-LevelAbbreviation').val('DP');
+			jQuery('input#form-field-PriceRange').val('$55 CAD - $80 CAD');
+			break;
+
+
+			case ('Career-Related Programme'): 	
+			jQuery('input#form-field-LevelAbbreviation').val('CP');
+			jQuery('input#form-field-PriceRange').val('$55 CAD - $80 CAD');
+			break;
+
+
+			case ('Middle Years Programme'): 	
+			jQuery('input#form-field-LevelAbbreviation').val('MYP');
+			jQuery('input#form-field-PriceRange').val('$50 CAD - $75 CAD');
+			break;
+
+
+			case ('Primary Years Programme'): 	
+			jQuery('input#form-field-LevelAbbreviation').val('PYP');
+			jQuery('input#form-field-PriceRange').val('$45 CAD - $70 CAD');
+			break;
+
+
+			default: 	;
+		}
+	}else{
+		switch (ibpro) {
+			case ('Diploma Programme'): 	
+			jQuery('input#form-field-LevelAbbreviation').val('DP');
+			jQuery('input#form-field-PriceRange').val('$55 USD - $80 USD');
+			break;
+
+
+			case ('Career-Related Programme'): 	
+			jQuery('input#form-field-LevelAbbreviation').val('CP');
+			jQuery('input#form-field-PriceRange').val('$55 USD - $80 USD');
+			break;
+
+
+			case ('Middle Years Programme'): 	
+			jQuery('input#form-field-LevelAbbreviation').val('MYP');
+			jQuery('input#form-field-PriceRange').val('$50 USD - $75 USD');
+			break;
+
+
+			case ('Primary Years Programme'): 	
+			jQuery('input#form-field-LevelAbbreviation').val('PYP');
+			jQuery('input#form-field-PriceRange').val('$45 USD - $70 USD');
+			break;
+
+
+			default: 	;
+		}
+	}
+
+
+});
+
+
+
+
+
+
+//Name Is capitalize Script
+jQuery( "div#step_2_form input#form-field-name ,div#step_2_form input#form-field-StudentName" ).keyup(function() {
+	var x = jQuery(this).val();
+	CapVal = x.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+		return txtVal.toUpperCase();
+	});
+	jQuery(this).val(CapVal);
+});
+
+var referid = jQuery.cookie("referid");
+
+if (referid) {
+	jQuery('input#form-field-referid').val(referid);
+}
+
+
+var AffiliateId = jQuery.cookie("affiliateid");
+
+if (AffiliateId) {
+    jQuery('input#form-field-AffiliateId').val(AffiliateId);
+}
+    jQuery("select#form-field-popup_country").change(function () {
+  if (this.value == "Colombia") {
+    jQuery("input#form-field-custom_message").val(this.value + " Weekends on Sunday / Saturday - Sunday");
+  } else if (
+    this.value == "Hong Kong" ||
+    this.value == "Equatorial Guinea" ||
+    this.value == "Mexico" ||
+    this.value == "Korea (North)" ||
+    this.value == "Uganda"
+  ) {
+    jQuery("input#form-field-custom_message").val(this.value + " Weekends on Sunday");
+  } else if (this.value == "Brunei Darussalam") {
+    jQuery("input#form-field-custom_message").val(this.value + " Weekends on Friday / Sunday");
+  } else if (
+    this.value == "Djibouti" ||
+    this.value == "Iran" ||
+    this.value == "Palestine" ||
+    this.value == "Somalia" ||
+    this.value == "Bangladesh"
+  ) {
+    jQuery("input#form-field-custom_message").val(this.value + " Weekends on Friday");
+  } else if (this.value == "Afghanistan") {
+    jQuery("input#form-field-custom_message").val(this.value + " Weekends on Thursday - Friday");
+  } else if (this.value == "Nepal") {
+    jQuery("input#form-field-custom_message").val(this.value + " Weekends on Saturday");
+  } else if (
+    this.value == "Algeria" ||
+    this.value == "Bahrain" ||
+    this.value == "Egypt" ||
+    this.value == "Iraq" ||
+    this.value == "Israel" ||
+    this.value == "Jordan" ||
+    this.value == "Kuwait" ||
+    this.value == "Libya" ||
+    this.value == "Maldives" ||
+    this.value == "Oman" ||
+    this.value == "Qatar" ||
+    this.value == "Saudi Arabia" ||
+    this.value == "Sudan" ||
+    this.value == "Syria" ||
+    this.value == "Yemen" ||
+    this.value == "United Arab Emirates" ||
+    this.value == "Malaysia"
+  ) {
+    jQuery("input#form-field-custom_message").val(this.value + " Weekends on Friday - Saturday");
+  } else {
+    jQuery("input#form-field-custom_message").val(this.value + " Weekends on Saturday - Sunday");
+  }
+});
+
+</script>
